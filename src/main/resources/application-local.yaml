@@ -1,0 +1,15 @@
+spring:
+  profiles: local
+
+server:
+  port: 9090
+
+
+azure:
+  application-insights:
+    instrumentation-key: yourkey
+
+
+
+
+

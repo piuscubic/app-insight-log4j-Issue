@@ -1,0 +1,60 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.7.RELEASE'       
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+
+    }
+}
+/*plugins {
+    id "org.liquibase.gradle" version "2.0.1"
+}*/
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+
+
+group = 'com.ui.dmap'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+
+    runtime.exclude module: "spring-boot-starter-logging"
+
+    runtime.exclude module: 'azure-keyvault-secrets-spring-boot-starter-logging'
+    runtime.exclude module: 'spring-boot-starter-security-logging'
+
+}
+
+dependencies {
+
+    //For  Azure application Insight
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2'
+    compile group: 'com.microsoft.azure', name: 'applicationinsights-logging-log4j2',  version: '2.1.1'
+    compile group: 'com.microsoft.azure', name: 'applicationinsights-spring-boot-starter', version: '1.1.1'
+
+    compile ('com.microsoft.azure:azure-keyvault-secrets-spring-boot-starter:2.1.3')
+
+
+    compile group: 'org.json', name: 'json', version: '20090211'
+
+
+
+
+}
+
